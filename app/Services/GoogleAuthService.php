@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Models\User;
-use Google_Client;
+//use Google\Client\Google_Client;
 use Google_Service_Oauth2;
 use Google_Service_Gmail;
 use Illuminate\Support\Facades\Log;
@@ -17,7 +17,7 @@ class GoogleAuthService
      */
     public function __construct()
     {
-        $this->client = new Google_Client();
+        $this->client = new \Google\Client();
         $this->client->setClientId(config('services.google.client_id'));
         $this->client->setClientSecret(config('services.google.client_secret'));
         $this->client->setRedirectUri(config('services.google.redirect'));
@@ -53,6 +53,7 @@ class GoogleAuthService
             $userInfo = $service->userinfo->get();
             
             // Create or update user
+
             $user = User::updateOrCreate(
                 ['email' => $userInfo->getEmail()],
                 ['google_token' => json_encode($token)]

@@ -10,15 +10,14 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-// Google Authentication Routes
-Route::prefix('auth')->group(function () {
-    Route::get('google/url', [AuthController::class, 'getGoogleAuthUrl']);
-    Route::get('google/callback', [AuthController::class, 'handleGoogleCallback']);
-});
 
-// User Routes
-Route::prefix('users')->group(function () {
-    Route::get('/', [UserController::class, 'index']);
-    Route::post('/complete-registration', [UserController::class, 'completeRegistration']);
-    Route::post('/{userId}/send-email', [UserController::class, 'sendEmail']);
-});
+    Route::prefix('auth')->group(function () {
+        Route::get('google/url', [AuthController::class, 'getGoogleAuthUrl']);
+        Route::get('google/callback', [AuthController::class, 'handleGoogleCallback']);
+    });
+
+    Route::prefix('users')->group(function () {
+        Route::get('/', [UserController::class, 'index']);
+        Route::post('/complete-registration', [UserController::class, 'completeRegistration']);
+        Route::post('/{userId}/send-email', [UserController::class, 'sendEmail']);
+    });

@@ -65,6 +65,7 @@ class UserRepository
      */
     public function createOrUpdate(array $data, ?User $user = null): User
     {
+
         if ($user) {
             $user->update($data);
             return $user;

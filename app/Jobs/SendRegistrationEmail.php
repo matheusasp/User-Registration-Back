@@ -44,4 +44,9 @@ class SendRegistrationEmail implements ShouldQueue
             $this->fail($e);
         }
     }
+
+    public function getUser()
+    {
+        return $this->user;
+    }
 }

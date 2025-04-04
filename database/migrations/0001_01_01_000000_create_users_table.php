@@ -9,7 +9,7 @@ return new class extends Migration {
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id(); 
-            $table->string('name', 255)->index();
+            $table->string('name', 255)->nullable()->index();
             $table->string('email', 255)->unique()->index(); 
             $table->date('birth_date')->nullable(); 
             $table->string('cpf', 14)->unique()->nullable()->index(); 

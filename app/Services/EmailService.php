@@ -40,7 +40,6 @@ class EmailService
 
             $this->client->setAccessToken($tokenData);
             
-            // Refresh token if needed
             if ($this->client->isAccessTokenExpired()) {
                 if (isset($tokenData['refresh_token'])) {
                     $this->client->fetchAccessTokenWithRefreshToken($tokenData['refresh_token']);
@@ -53,7 +52,6 @@ class EmailService
             
             $service = new Google_Service_Gmail($this->client);
             
-            // Create the email
             $subject = "Registration Completed Successfully";
             $messageText = "Hello " . ($user->name ?? "there") . ",\n\n";
             $messageText .= "Thank you for registering on our system.\n";

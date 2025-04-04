@@ -59,6 +59,7 @@ class UserController extends Controller
      */
     public function completeRegistration(UserRequest $request): JsonResponse
     {
+
         try {
             $userId = $request->input('user_id');
             $user = $this->userRepository->findById($userId);
@@ -66,11 +67,10 @@ class UserController extends Controller
             if (!$user) {
                 return response()->json(['error' => 'User not found'], 404);
             }
-            
+
             $userData = $request->only(['name', 'birth_date', 'cpf']);
             $user = $this->userRepository->createOrUpdate($userData, $user);
             
-            // Dispatch email job
             SendRegistrationEmail::dispatch($user);
             
             return response()->json([
