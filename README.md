@@ -77,6 +77,7 @@ docker exec -it frontend npm run dev
 
 ## ✉️ Envio de E-mail
 O envio de e-mail é feito com base no token do Google salvo. O processo é assíncrono via fila e utiliza a biblioteca oficial do Google.
+Necessário configurar no .env as variáveis relacionadas ao e-mail e ao google
 
 ## 🔧 Testes
 
